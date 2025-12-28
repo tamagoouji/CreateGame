@@ -4,6 +4,14 @@ extends CharacterBody2D
 @export var accel: int = 1200
 @export var friction: int = 800
 
+# Player stats
+@export var max_hp: int = 40
+var hp: int = max_hp
+@export var attack: int = 10
+var level: int = 1
+var xp: int = 0
+var xp_to_next: int = 100
+
 var velocity: Vector2 = Vector2.ZERO
 var facing: Vector2 = Vector2.RIGHT
 var step_timer: float = 0.0
@@ -44,3 +52,20 @@ func _physics_process(delta: float) -> void:
         sprite.scale = Vector2.ONE
 
     velocity = move_and_slide(velocity)
+
+# XP / Level system
+func gain_xp(amount: int) -> void:
+    xp += amount
+    var dm = get_parent().get_node_or_null("DialogManager")
+    if dm:
+        dm.show_dialog(["%d XP を獲得した！" % amount])
+    # レベルアップ判定
+    while xp >= xp_to_next:
+        xp -= xp_to_next
+        level += 1
+        xp_to_next = int(xp_to_next * 1.4)
+        max_hp += 8
+        attack += 2
+        hp = max_hp
+        if dm:
+            dm.show_dialog(["レベルアップ！ レベル %d" % level])

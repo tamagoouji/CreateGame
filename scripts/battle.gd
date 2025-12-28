@@ -8,6 +8,7 @@ var player_attack: int = 10
 var enemy_hp: int = 30
 var enemy_max: int = 30
 var enemy_attack: int = 6
+var xp_reward: int = 40
 
 var state: String = "player"
 var menu_index: int = 0
@@ -15,10 +16,28 @@ var options: Array = ["Attack", "Heal", "Run"]
 
 onready var msg_label := $UI/Panel/Label
 onready var menu_label := $UI/Panel/MenuLabel
+onready var player_bar := $UI/PlayerBar
+onready var enemy_bar := $UI/EnemyBar
 
 func _ready() -> void:
+    # 初期UIセット
     update_ui()
     msg_label.text = "戦闘開始！"
+    # 簡易プレースホルダー画像生成（Player/Enemy）
+    var p_sprite := $PlayerNode/Sprite2D
+    if p_sprite.texture == null:
+        var img := Image.create(48, 48, false, Image.FORMAT_RGBA8)
+        img.lock()
+        img.fill(Color(0.2, 0.6, 1.0, 1.0))
+        img.unlock()
+        p_sprite.texture = ImageTexture.create_from_image(img)
+    var e_sprite := $EnemyNode/Sprite2D
+    if e_sprite.texture == null:
+        var img2 := Image.create(56, 56, false, Image.FORMAT_RGBA8)
+        img2.lock()
+        img2.fill(Color(1.0, 0.4, 0.4, 1.0))
+        img2.unlock()
+        e_sprite.texture = ImageTexture.create_from_image(img2)
 
 func _input(event) -> void:
     if state != "player":
@@ -46,6 +65,11 @@ func update_ui() -> void:
     update_menu()
     # Show HP status in message for quick visibility
     msg_label.text = "プレイヤーHP: %d/%d  |  敵HP: %d/%d" % [player_hp, player_max, enemy_hp, enemy_max]
+    # プログレスバー更新
+    player_bar.max_value = player_max
+    player_bar.value = player_hp
+    enemy_bar.max_value = enemy_max
+    enemy_bar.value = enemy_hp
 
 func execute_choice() -> void:
     var choice := options[menu_index]
@@ -89,6 +113,12 @@ func enemy_turn() -> void:
 
 func victory() -> void:
     msg_label.text = "勝利！"
+    # XPを付与
+    var main := get_parent()
+    if main:
+        var player_node := main.get_node_or_null("Player")
+        if player_node != null and player_node.has_method("gain_xp"):
+            player_node.gain_xp(xp_reward)
     yield(get_tree().create_timer(0.8), "timeout")
     end_battle(true)
 

@@ -18,6 +18,7 @@ position = Vector2(400, 300)
 
 [node name="NPC" instance=ExtResource( 2 ) parent="."]
 position = Vector2(520, 300)
+triggers_battle = true
 
 [node name="DialogManager" type="Node" parent="."]
 script = ExtResource( 4 )

@@ -8,6 +8,18 @@ script = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
+[node name="UI/PlayerBar" type="ProgressBar" parent="UI"]
+rect_position = Vector2(32, 320)
+rect_size = Vector2(300, 24)
+value = 40
+max_value = 40
+
+[node name="UI/EnemyBar" type="ProgressBar" parent="UI"]
+rect_position = Vector2(420, 320)
+rect_size = Vector2(300, 24)
+value = 30
+max_value = 30
+
 [node name="UI/Panel" type="Panel" parent="UI"]
 rect_position = Vector2(40, 360)
 rect_size = Vector2(720, 160)
@@ -26,5 +38,11 @@ rect_position = Vector2(12, 48)
 [node name="EnemyNode" type="Node2D" parent="."]
 position = Vector2(520, 200)
 
+[node name="EnemyNode/Sprite2D" type="Sprite2D" parent="EnemyNode"]
+texture = null
+
 [node name="PlayerNode" type="Node2D" parent="."]
 position = Vector2(200, 200)
+
+[node name="PlayerNode/Sprite2D" type="Sprite2D" parent="PlayerNode"]
+texture = null
