@@ -14,10 +14,10 @@ var state: String = "player"
 var menu_index: int = 0
 var options: Array = ["Attack", "Heal", "Run"]
 
-onready var msg_label = $UI/Panel/Label
-onready var menu_label = $UI/Panel/MenuLabel
-onready var player_bar = $UI/PlayerBar
-onready var enemy_bar = $UI/EnemyBar
+@onready var msg_label = $UI/Panel/Label
+@onready var menu_label = $UI/Panel/MenuLabel
+@onready var player_bar = $UI/PlayerBar
+@onready var enemy_bar = $UI/EnemyBar
 
 func _ready() -> void:
     # 初期UIセット

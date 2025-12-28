@@ -1,7 +1,7 @@
 extends Node
 
 var dialog_scene = preload("res://scenes/DialogUI.tscn")
-onready var dialog_ui = null
+@onready var dialog_ui = null
 var lines: Array = []
 var idx: int = 0
 var active: bool = false

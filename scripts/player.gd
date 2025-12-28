@@ -17,7 +17,7 @@ var facing: Vector2 = Vector2.RIGHT
 var step_timer: float = 0.0
 var step_interval: float = 0.15
 
-onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: Sprite2D = $Sprite2D
 
 func _ready() -> void:
     # 簡易プレースホルダー画像を生成して設定（アセット不要）
