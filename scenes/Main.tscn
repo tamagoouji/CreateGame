@@ -14,12 +14,10 @@
 
 [node name="Background" type="Node2D" parent="."]
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" instance=ExtResource( 1 ) parent="."]
 position = Vector2(400, 300)
-script = ExtResource( 7 )
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-texture = null
+# instanced Player scene
 
 # CollisionShape2D removed to avoid legacy tscn sub_resource parsing issues
 
