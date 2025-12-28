@@ -27,6 +27,7 @@ func _ready() -> void:
         img.unlock()
         var tex = ImageTexture.create_from_image(img)
         sprite.texture = tex
+        print("[debug] Player._ready: sprite texture set -> " + str(sprite.texture))
 
 func _physics_process(delta: float) -> void:
     var input_dir = Vector2.ZERO
