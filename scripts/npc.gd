@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var dialog_lines: Array = ["おぉ、君か。", "気をつけて、この先は危険だ。"]
+@export var triggers_battle: bool = false
 
 var player_in_range: bool = false
 
@@ -27,6 +28,11 @@ func _on_body_exited(body) -> void:
 
 func _process(delta: float) -> void:
     if player_in_range and Input.is_action_just_pressed("ui_accept"):
+        if triggers_battle:
+            var bm := get_parent().get_node("BattleManager")
+            if bm and not bm.battle_active:
+                bm.start_battle()
+                return
         var dm := get_parent().get_node("DialogManager")
         if dm and not dm.active:
             dm.show_dialog(dialog_lines)
