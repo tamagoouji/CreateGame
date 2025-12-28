@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
         velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
         sprite.scale = Vector2.ONE
 
-    velocity = move_and_slide()
+    move_and_slide()
 
 # XP / Level system
 func gain_xp(amount: int) -> void:
