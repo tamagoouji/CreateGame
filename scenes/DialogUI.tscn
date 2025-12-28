@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="3c2f7b2b-9f2d-4b1a-a8a8-111111111111"]
+
+[node name="DialogUI" type="Control"]
+visible = false
+
+[node name="Panel" type="Panel" parent="."]
+rect_position = Vector2(40, 400)
+rect_size = Vector2(720, 120)
+
+[node name="Panel/Label" type="Label" parent="Panel"]
+text = ""
+anchor_left = 0.02
+anchor_right = 0.98
+anchor_top = 0.12
+anchor_bottom = 0.88
+
+# シンプルなダイアログUI（最小）
