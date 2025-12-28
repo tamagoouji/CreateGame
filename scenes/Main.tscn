@@ -18,14 +18,14 @@
 position = Vector2(400, 300)
 script = ExtResource( 7 )
 
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2(8, 12)
+
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 texture = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource( 1 )
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2(8, 12)
 
 [node name="NPC" instance=ExtResource( 2 ) parent="."]
 position = Vector2(520, 300)
