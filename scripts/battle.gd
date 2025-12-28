@@ -14,26 +14,26 @@ var state: String = "player"
 var menu_index: int = 0
 var options: Array = ["Attack", "Heal", "Run"]
 
-onready var msg_label := $UI/Panel/Label
-onready var menu_label := $UI/Panel/MenuLabel
-onready var player_bar := $UI/PlayerBar
-onready var enemy_bar := $UI/EnemyBar
+onready var msg_label = $UI/Panel/Label
+onready var menu_label = $UI/Panel/MenuLabel
+onready var player_bar = $UI/PlayerBar
+onready var enemy_bar = $UI/EnemyBar
 
 func _ready() -> void:
     # 初期UIセット
     update_ui()
     msg_label.text = "戦闘開始！"
     # 簡易プレースホルダー画像生成（Player/Enemy）
-    var p_sprite := $PlayerNode/Sprite2D
+    var p_sprite = $PlayerNode/Sprite2D
     if p_sprite.texture == null:
-        var img := Image.create(48, 48, false, Image.FORMAT_RGBA8)
+        var img = Image.create(48, 48, false, Image.FORMAT_RGBA8)
         img.lock()
         img.fill(Color(0.2, 0.6, 1.0, 1.0))
         img.unlock()
         p_sprite.texture = ImageTexture.create_from_image(img)
-    var e_sprite := $EnemyNode/Sprite2D
+    var e_sprite = $EnemyNode/Sprite2D
     if e_sprite.texture == null:
-        var img2 := Image.create(56, 56, false, Image.FORMAT_RGBA8)
+        var img2 = Image.create(56, 56, false, Image.FORMAT_RGBA8)
         img2.lock()
         img2.fill(Color(1.0, 0.4, 0.4, 1.0))
         img2.unlock()
@@ -52,7 +52,7 @@ func _input(event) -> void:
         execute_choice()
 
 func update_menu() -> void:
-    var text := ""
+    var text = ""
     for i in range(options.size()):
         if i == menu_index:
             text += "> " + options[i] + "\n"
@@ -72,7 +72,7 @@ func update_ui() -> void:
     enemy_bar.value = enemy_hp
 
 func execute_choice() -> void:
-    var choice := options[menu_index]
+    var choice = options[menu_index]
     if choice == "Attack":
         enemy_hp -= player_attack
         msg_label.text = "プレイヤーの攻撃！%d のダメージ" % player_attack
@@ -87,7 +87,7 @@ func execute_choice() -> void:
         await get_tree().create_timer(0.6).timeout
         enemy_turn()
     elif choice == "Heal":
-        var heal := 12
+        var heal = 12
         player_hp = min(player_max, player_hp + heal)
         msg_label.text = "回復！%d 回復" % heal
         state = "enemy"
@@ -114,9 +114,9 @@ func enemy_turn() -> void:
 func victory() -> void:
     msg_label.text = "勝利！"
     # XPを付与
-    var main := get_parent()
+    var main = get_parent()
     if main:
-        var player_node := main.get_node_or_null("Player")
+        var player_node = main.get_node_or_null("Player")
         if player_node != null and player_node.has_method("gain_xp"):
             player_node.gain_xp(xp_reward)
     await get_tree().create_timer(0.8).timeout

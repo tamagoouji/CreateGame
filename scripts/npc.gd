@@ -7,9 +7,9 @@ var player_in_range: bool = false
 
 func _ready() -> void:
     # 簡易プレースホルダー画像を生成
-    var sprite := $Sprite2D
+    var sprite = $Sprite2D
     if sprite.texture == null:
-        var img := Image.create(24, 24, false, Image.FORMAT_RGBA8)
+        var img = Image.create(24, 24, false, Image.FORMAT_RGBA8)
         img.lock()
         img.fill(Color(1.0, 0.6, 0.2, 1.0))
         img.unlock()

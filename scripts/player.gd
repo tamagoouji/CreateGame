@@ -22,21 +22,21 @@ onready var sprite: Sprite2D = $Sprite2D
 func _ready() -> void:
     # 簡易プレースホルダー画像を生成して設定（アセット不要）
     if sprite.texture == null:
-        var img := Image.create(32, 32, false, Image.FORMAT_RGBA8)
+        var img = Image.create(32, 32, false, Image.FORMAT_RGBA8)
         img.lock()
         img.fill(Color(0.2, 0.6, 1.0, 1.0))
         img.unlock()
-        var tex := ImageTexture.create_from_image(img)
+        var tex = ImageTexture.create_from_image(img)
         sprite.texture = tex
 
 func _physics_process(delta: float) -> void:
-    var input_dir := Vector2.ZERO
+    var input_dir = Vector2.ZERO
     input_dir.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
     input_dir.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 
     if input_dir != Vector2.ZERO:
         facing = input_dir.normalized()
-        var target := input_dir.normalized() * speed
+        var target = input_dir.normalized() * speed
         velocity = velocity.move_toward(target, accel * delta)
 
         # 簡易ステップアニメーション（拡縮で表現）
