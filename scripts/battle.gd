@@ -79,12 +79,12 @@ func execute_choice() -> void:
         if enemy_hp <= 0:
             enemy_hp = 0
             update_ui()
-            yield(get_tree().create_timer(0.6), "timeout")
+            await get_tree().create_timer(0.6).timeout
             victory()
             return
         state = "enemy"
         update_ui()
-        yield(get_tree().create_timer(0.6), "timeout")
+        await get_tree().create_timer(0.6).timeout
         enemy_turn()
     elif choice == "Heal":
         var heal := 12
@@ -92,11 +92,11 @@ func execute_choice() -> void:
         msg_label.text = "回復！%d 回復" % heal
         state = "enemy"
         update_ui()
-        yield(get_tree().create_timer(0.6), "timeout")
+        await get_tree().create_timer(0.6).timeout
         enemy_turn()
     elif choice == "Run":
         msg_label.text = "逃走に成功した！"
-        yield(get_tree().create_timer(0.6), "timeout")
+        await get_tree().create_timer(0.6).timeout
         end_battle(false)
 
 func enemy_turn() -> void:
@@ -105,7 +105,7 @@ func enemy_turn() -> void:
     if player_hp <= 0:
         player_hp = 0
         update_ui()
-        yield(get_tree().create_timer(0.6), "timeout")
+        await get_tree().create_timer(0.6).timeout
         defeat()
         return
     state = "player"
@@ -119,12 +119,12 @@ func victory() -> void:
         var player_node := main.get_node_or_null("Player")
         if player_node != null and player_node.has_method("gain_xp"):
             player_node.gain_xp(xp_reward)
-    yield(get_tree().create_timer(0.8), "timeout")
+    await get_tree().create_timer(0.8).timeout
     end_battle(true)
 
 func defeat() -> void:
     msg_label.text = "全滅..."
-    yield(get_tree().create_timer(0.8), "timeout")
+    await get_tree().create_timer(0.8).timeout
     end_battle(false)
 
 func end_battle(win: bool) -> void:
