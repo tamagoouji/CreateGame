@@ -1,7 +1,7 @@
 extends SceneTree
 
 func _dump_node(node: Node, indent: int = 0) -> String:
-    var s = "".pad_left(indent * 2, " ") + node.name + " (" + str(node.get_class()) + ")\n"
+    var s = (" " * (indent * 2)) + node.name + " (" + str(node.get_class()) + ")\n"
     for child in node.get_children():
         s += _dump_node(child, indent + 1)
     return s
