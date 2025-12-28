@@ -12,7 +12,6 @@ var level: int = 1
 var xp: int = 0
 var xp_to_next: int = 100
 
-var velocity: Vector2 = Vector2.ZERO
 var facing: Vector2 = Vector2.RIGHT
 var step_timer: float = 0.0
 var step_interval: float = 0.15
@@ -51,7 +50,7 @@ func _physics_process(delta: float) -> void:
         velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
         sprite.scale = Vector2.ONE
 
-    velocity = move_and_slide(velocity)
+    velocity = move_and_slide()
 
 # XP / Level system
 func gain_xp(amount: int) -> void:

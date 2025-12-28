@@ -13,7 +13,7 @@ func _ready() -> void:
     dialog_ui.visible = false
 
 func show_dialog(new_lines: Array, callback = null) -> void:
-    if new_lines.empty():
+    if new_lines.is_empty():
         return
     lines = new_lines.duplicate()
     idx = 0
