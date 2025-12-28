@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="b64c3d9a-4f84-4a5e-9b0d-1a2bb8a9e0aa"]
+
+[node name="Main" type="Node2D"]
+
+# シーンの例: 実行すると Player を配置して移動できます
+
+
+[node name="Player" instance=ExtResource( 1 )]
+position = Vector2(400, 300)
+
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]

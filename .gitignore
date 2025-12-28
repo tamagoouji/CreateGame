@@ -1,0 +1,9 @@
+.import/
+.export/
+.export_presets.cfg
+.project.godot.editor/
+*.import
+*.tmp
+**/res://.import/
+.DS_Store
+.vscode/settings.json
